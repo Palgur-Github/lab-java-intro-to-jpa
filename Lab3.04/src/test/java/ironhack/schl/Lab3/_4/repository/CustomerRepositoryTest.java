@@ -43,14 +43,14 @@ public class CustomerRepositoryTest {
     @Test
     public void testFindCustomersByName() {
         Customer savedCustomer = customerRepository.save(testCustomer);
-        List<Customer> customersByName = customerRepository.findCustomersByName(testCustomer.getCustomerName());
+        List<Customer> customersByName = customerRepository.findByCustomersName(testCustomer.getCustomerName());
         assertTrue(customersByName.contains(savedCustomer));
     }
 
     @Test
     public void testFindCustomersByStatus() {
         Customer savedCustomer = customerRepository.save(testCustomer);
-        List<Customer> customersByStatus = customerRepository.findCustomersByStatus(testCustomer.getCustomerStatus());
+        List<Customer> customersByStatus = customerRepository.findByCustomersStatus(testCustomer.getCustomerStatus());
         assertTrue(customersByStatus.contains(savedCustomer));
     }
 }

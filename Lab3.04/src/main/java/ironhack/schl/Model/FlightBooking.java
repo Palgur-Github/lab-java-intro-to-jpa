@@ -9,12 +9,12 @@ public class FlightBooking {
 
     private Integer bookingId;
 
-    @OneToOne
-    @Column(name = "customer_id")
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Integer costumerId;
 
-    @OneToOne
-    @Column(name = "flight_id")
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
     private Integer flightId;
 
     public FlightBooking() {

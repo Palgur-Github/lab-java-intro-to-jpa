@@ -23,7 +23,7 @@ public class FlightRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        testFlight = new Flight("L203", "BOEING 747", 200, 600);
+        testFlight = new Flight("FL123", "BOEING 747", 200, 600);
     }
 
     @AfterEach
@@ -47,7 +47,7 @@ public class FlightRepositoryTest {
     public void testFindFlightsByFlightNumber() {
         Flight testFlight = new Flight("FL123", "BOEING 747", 200, 600);
         Flight savedFlight = flightRepository.save(testFlight);
-        Optional<Flight> foundFlight = FlightRepository.findFlightsByFlightNumber(testFlight.getFlightNumber());
+        Optional<Flight> foundFlight = flightRepository.findByFlightFlightNumber(testFlight.getFlightNumber());
         assertTrue(foundFlight.isPresent());
         assertEquals(testFlight, foundFlight.get());
     }
@@ -56,15 +56,15 @@ public class FlightRepositoryTest {
     public void testFindAircraftByNameContainingBoeing() {
         Flight testFlight2 = new Flight("FL123", "BOEING 747", 200, 600);
         Flight savedAircraft = flightRepository.save(testFlight2);
-        List<Flight> aircraftByNameContainingBoeing = FlightRepository.findAircraftByNameContaining("Boeing");
+        List<Flight> aircraftByNameContainingBoeing = flightRepository.findByAircraftContaining("Boeing");
         assertTrue(aircraftByNameContainingBoeing.contains(savedAircraft));
     }
 
     @Test
     public void testFindFlightsWithDistanceGreaterThan500() {
-        Flight testFlight = new Flight("FL123", "JFK", 200, 600);
+        Flight testFlight = new Flight("FL123", "BOEING 747", 200, 600);
         Flight savedFlight = flightRepository.save(testFlight);
-        List<Flight> flightsWithDistanceGreaterThan500 = FlightRepository.findFlightsWithDistanceGreaterThan(500);
+        List<Flight> flightsWithDistanceGreaterThan500 = flightRepository.findByFlightMileageGreaterThan(500);
         assertTrue(flightsWithDistanceGreaterThan500.contains(savedFlight));
     }
 }
